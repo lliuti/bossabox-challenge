@@ -3,9 +3,16 @@ import ToolController from '../src/app/controllers/ToolController';
 
 const routes = new Router();
 
-routes.get('/tools', ToolController.index); // Lists all Tools
-routes.get('/tools/:tag', ToolController.find); // Filter Tools by it's tags
-routes.post('/tools', ToolController.store); // Adds new Tools
-routes.delete('/tools/:id', ToolController.delete); // Deletes specified Tool
+// Lists all Tools
+routes.get('/tools', ToolController.index); 
+
+// Filter Tools by it's tags
+routes.get('/tools/:tag', ToolController.find);
+
+// Adds new Tools 
+routes.post('/tools', ToolController.store); 
+
+// Deletes specified Tool
+routes.delete('/tools/:id', ToolController.delete); 
 
 export default routes;
