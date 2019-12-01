@@ -36,6 +36,23 @@ class ToolController {
   
   };
 
+  async delete(req, res) {
+    const { id } = req.params;
+    
+    const tool = await Tool.findOne({
+      where: { id }
+    })
+
+    if (!tool)
+      return res.status(400).json({ error: 'Tool not found' });
+  
+    const deleteTool = await Tool.destroy({
+      where: { id }
+    })
+
+    return res.status(204);
+  };
+
 };
 
 export default new ToolController();
