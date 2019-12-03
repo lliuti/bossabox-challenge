@@ -11,7 +11,9 @@ class ToolController {
     const { tag } = req.params;
     const tools = await Tool.findAll({
       where: {
-        tags: tag,
+        tags: {
+          [Op.like]: "%"+tag.toLowerCase()+"%"
+        },
       },
     });
     return res.json(tools);
@@ -20,6 +22,7 @@ class ToolController {
   async store(req, res) {
 
     const { title } = req.body;
+    req.body.tags = req.body.tags.toString().toLowerCase();
 
     // Checks if there's another tool with this title
     const titleExists = await Tool.findOne({
@@ -32,7 +35,10 @@ class ToolController {
 
     const tool = await Tool.create(req.body);
 
-    return res.status(201).json(tool);
+    const tags = tool.tags.split(',');
+    const { id, link, description } = tool;
+
+    return res.status(201).json({ id, title, link, description, tags });
   
   };
 
@@ -49,8 +55,8 @@ class ToolController {
     const deleteTool = await Tool.destroy({
       where: { id }
     })
-
-    return res.status(204);
+    
+    return res.status(204).json();
   };
 
 };
