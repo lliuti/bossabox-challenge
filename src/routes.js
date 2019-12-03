@@ -3,11 +3,8 @@ import ToolController from '../src/app/controllers/ToolController';
 
 const routes = new Router();
 
-// Lists all Tools
-routes.get('/tools', ToolController.index); 
-
-// Filter Tools by it's tags
-routes.get('/tools/:tag', ToolController.find);
+// Finds either all Tools or search them by it's Tags 
+routes.get('/tools', ToolController.find);
 
 // Adds new Tools 
 routes.post('/tools', ToolController.store); 

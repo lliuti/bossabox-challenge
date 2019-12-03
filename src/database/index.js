@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+
 import Tools from '../app/models/Tool';
 import dbConfig from '../config/database';
 
