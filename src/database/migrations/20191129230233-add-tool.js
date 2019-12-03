@@ -23,7 +23,7 @@ module.exports = {
           allowNull: false,
         },
         tags: {
-          type: Sequelize.STRING,
+          type: Sequelize.ARRAY(Sequelize.STRING),
           allowNull: true,
         },
       });
