@@ -16,15 +16,15 @@ module.exports = {
         },
         link: {
           type: Sequelize.STRING,
-          allowNull: false,
+          allowNull: true,
         },
         description: {
           type: Sequelize.STRING,
           allowNull: false,
         },
         tags: {
-          type: Sequelize.ARRAY(Sequelize.STRING),
-          allowNull: false,
+          type: Sequelize.STRING,
+          allowNull: true,
         },
       });
   },
