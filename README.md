@@ -15,7 +15,7 @@ or
 yarn
 ```
 
-There is also a '.env.example' file at the root folder. In order to run the app, rename it to '.env' passing the correct information.
+There is also a '.env.example' file at the root folder. In order to run the app, rename it to '.env'. Also make sure to pass the correct information.
 
 
 ### How to run it
@@ -29,6 +29,31 @@ or
 yarn dev
 ```
 
+### Endpoints
+
+You can *add* new Tools using the endpoint
+```
+POST /tools
+```
+Here is an example of how your requisition's body is going to look like:
+![POST Example Image](https://github.com/lliuti/bossabox-vuttr/blob/master/content/Add-Tool-Example.png)
+
+As you can add, there is and endpoint do *delete* Tools
+```
+DELETE /tools/:id
+```
+This is how you can do it:
+![DELETE Example Image](https://github.com/lliuti/bossabox-vuttr/blob/master/content/Delete-Tool-Example.png)
+
+You can also *list* all Tools or *filter* them by passing a Tag
+```
+GET /tools
+GET /tools?tag=node
+```
+Where 'node' can be anything you want to search by
+
+This is an example where I'm trying to find any Tool that have a 'jwt' tag.
+![GET Example Image](https://github.com/lliuti/bossabox-vuttr/blob/master/content/Find-Tool-Example.png)
 
 #### Built with
 * NodeJS
