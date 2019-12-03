@@ -1,54 +1,67 @@
-import Tool from '../models/Tool';
 import { Op } from 'sequelize';
+import Tool from '../models/Tool';
 
 class ToolController {
-  async index(req, res) {
-    const tools = await Tool.findAll();
-    return res.json(tools);
-  };
-
   async find(req, res) {
-    const { tag } = req.params;
+    // Destructuring query parameter
+    const { tag } = req.query;
+
+    // If there is an query parameter, 
+    // then it will search the database looking for it.
+    // If there isn't, it will search for an empty array (when there's no tags) 
+    const query = tag ? tag.toLowerCase() : [];
+
     const tools = await Tool.findAll({
       where: {
         tags: {
-          [Op.like]: "%"+tag.toLowerCase()+"%"
-        },
+          [Op.contains]: [query]
+        }
       },
     });
+
+    // Tries to find something at the first array item
+    // if there isn't, it returns an error
+    if (!tools[0])
+      return res.json({ error: "Couldn't find any tool" });
+
     return res.json(tools);
   };
 
   async store(req, res) {
 
-    const { title } = req.body;
-    req.body.tags = req.body.tags.toString().toLowerCase();
+    // Destructuring requisition's body
+    const { title, tags } = req.body;
+
+    // Parse all tags to lowercase
+    // (this allows the user to search either for 'NodeJS' and 'nodejs')
+    const parsed = tags.map(tag => tag.toLowerCase());
+    req.body.tags = parsed;
 
     // Checks if there's another tool with this title
     const titleExists = await Tool.findOne({
       where: { title }
     })
 
+    // Doesnt allow users to create a Tool with an existing title
     if (titleExists) {
       return res.json({ error: 'This tool already exists'});
     }
 
     const tool = await Tool.create(req.body);
 
-    const tags = tool.tags.split(',');
-    const { id, link, description } = tool;
-
-    return res.status(201).json({ id, title, link, description, tags });
-  
+    return res.status(201).json(tool);
   };
 
   async delete(req, res) {
+    // Destructuring requisition's parameter
     const { id } = req.params;
     
     const tool = await Tool.findOne({
       where: { id }
     })
 
+    // If there isn't a tool with that id
+    // it won't even try to delete it
     if (!tool)
       return res.status(400).json({ error: 'Tool not found' });
   
