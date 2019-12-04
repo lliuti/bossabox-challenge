@@ -1,6 +1,6 @@
 const dotenv = require('dotenv/config');
-module.exports = {
 
+module.exports = {
   dialect: 'postgres',
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
@@ -12,5 +12,4 @@ module.exports = {
     underscored: true,
     underscoredAll: true,
   },
-
 };

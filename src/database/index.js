@@ -6,18 +6,15 @@ import dbConfig from '../config/database';
 const models = [Tools];
 
 class Database {
-  
-  constructor() { 
+  constructor() {
     this.init();
-  };
+  }
 
   init() {
     this.connection = new Sequelize(dbConfig);
 
-    models
-      .map(model => model.init(this.connection))
-  };
-
+    models.map(model => model.init(this.connection));
+  }
 }
 
 export default new Database();
