@@ -15,8 +15,20 @@ or
 yarn
 ```
 
-There is also a *'.env.example'* file at the root folder. In order to run the app, rename it to '.env'. Also **make sure to pass the correct information**.
+#### Let's set up the database:
+Install Postbird (you can get it here: https://electronjs.org/apps/postbird) and save some informations:
+- Host
+- Port
+- Username
+- Password 
+After connecting, create a database named 'VUTTR'. 
 
+There is also a *'.env.example'* file at the root folder. In order to run the app, rename it to '.env'. Also **make sure to pass the information you got from Postbird**.
+
+After all that, run the following command:
+```
+yarn sequelize db:migrate
+```
 
 ### How to run it
 Also at the root folder, execute:
