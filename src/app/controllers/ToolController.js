@@ -1,5 +1,6 @@
 import { Op } from 'sequelize';
 import Tool from '../models/Tool';
+import User from '../models/User';
 
 class ToolController {
   async find(req, res) {
@@ -17,6 +18,7 @@ class ToolController {
           [Op.contains]: [query],
         },
       },
+      attributes: ['id', 'title', 'link', 'description', 'tags'],
     });
 
     // Tries to find something at the first array item
@@ -31,6 +33,10 @@ class ToolController {
   async store(req, res) {
     // Destructuring requisition's body
     const { title, tags } = req.body;
+
+    // Defines that the Tool was created by
+    // the current signed in User
+    req.body.created_by = req.userId;
 
     // Parse all tags to lowercase
     // (this allows the user to search either for 'NodeJS' and 'nodejs')
@@ -49,7 +55,8 @@ class ToolController {
 
     const tool = await Tool.create(req.body);
 
-    return res.status(201).json(tool);
+    const { id, link, description } = tool;
+    return res.status(201).json({ title, link, description, tags, id });
   }
 
   async delete(req, res) {
