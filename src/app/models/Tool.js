@@ -8,6 +8,7 @@ class Tool extends Model {
         link: Sequelize.STRING,
         description: Sequelize.STRING,
         tags: Sequelize.ARRAY(Sequelize.STRING),
+        created_by: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -15,6 +16,10 @@ class Tool extends Model {
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'id' });
   }
 }
 
