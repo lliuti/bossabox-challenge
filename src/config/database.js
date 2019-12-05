@@ -8,7 +8,7 @@ module.exports = {
   port: process.env.DB_PORT,
   database: 'VUTTR',
   define: {
-    timestamps: false,
+    timestamps: true,
     underscored: true,
     underscoredAll: true,
   },
