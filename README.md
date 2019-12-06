@@ -23,6 +23,8 @@ If you use Docker, you can run:
 ```
 docker run --name *** -e POSTGRES_PASSWORD=*** -p 5432:5432 -d postgres:11
 ```
+(You should change all '***' to your own information)
+
 But if you don't, you can download it here: https://www.postgresql.org/download/
 
 To create and manage data, you can install Postbird (a GUI client). You can get it here: https://electronjs.org/apps/postbird). Remember to save these information when you open Postbird:
