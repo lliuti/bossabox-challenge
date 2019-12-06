@@ -6,7 +6,7 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   host: process.env.HOST,
   port: process.env.DB_PORT,
-  database: 'VUTTR',
+  database: process.env.DATABASE,
   define: {
     timestamps: true,
     underscored: true,
