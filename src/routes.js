@@ -6,6 +6,12 @@ import SessionMiddleware from './app/middlewares/SessionMiddleware';
 
 const routes = new Router();
 
+routes.get('/', (req, res) => {
+  res.status(404).json({
+    availableRoutes: '/users, /sessions, /tools',
+  });
+});
+
 // Creates a new user
 routes.post('/users', UserController.store);
 
