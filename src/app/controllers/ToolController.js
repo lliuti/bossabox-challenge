@@ -27,7 +27,7 @@ class ToolController {
       return res.status(400).json({ error: "Couldn't find any tool" });
     }
 
-    return res.json(tools);
+    return res.status(200).json(tools);
   }
 
   async store(req, res) {
@@ -50,7 +50,7 @@ class ToolController {
 
     // Doesnt allow users to create a Tool with an existing title
     if (titleExists) {
-      return res.json({ error: 'This tool already exists' });
+      return res.status(400).json({ error: 'This tool already exists' });
     }
 
     const tool = await Tool.create(req.body);

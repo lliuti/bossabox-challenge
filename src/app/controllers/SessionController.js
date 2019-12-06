@@ -17,7 +17,7 @@ class SessionController {
 
     // Verifies password
     if (!(await user.checkPassword(password)))
-      return res.json({ error: 'Invalid password' });
+      return res.status(401).json({ error: 'Invalid password' });
 
     return res.json({
       user: { id, name, email },

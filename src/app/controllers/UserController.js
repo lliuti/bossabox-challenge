@@ -13,7 +13,9 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body)))
-      return res.json({ error: 'Invalid or insufficient information' });
+      return res
+        .status(400)
+        .json({ error: 'Invalid or insufficient information' });
 
     const { email } = req.body;
 
@@ -24,7 +26,7 @@ class UserController {
 
     // If there's an user with that email, it throws an error
     if (userExists)
-      return res.json({
+      return res.status(400).json({
         error: 'This email already belongs to an existing user',
       });
 
