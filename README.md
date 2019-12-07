@@ -1,12 +1,13 @@
 # VUTTR
-## Very Useful Tools To Remember
-
-🦇
+## Very Useful Tools To Remember 🦇
 
 This is a simple application to add and manage Tools with it's names, links, descriptions and tags. 
 Here you can add, delete and list Tools. Also, you can filter them by it's tags.
 
 ### How to install
+First of all, install Node (https://nodejs.org/en/). Then, clone the project.
+Now open your terminal and go to the project's root folder.
+
 In order to be able to run the API you must install all of it's dependencies. So, at the root folder you can run:
 
 ```
@@ -30,13 +31,18 @@ But if you don't, you can download it here: https://www.postgresql.org/download/
 To create and manage data, you can install Postbird (a GUI client). You can get it here: https://electronjs.org/apps/postbird). Remember to save these information when you open Postbird:
 - Host
 - Port
-- Username
+- Username (the default username is 'postgres')
 - Password 
 After connecting, create a database named 'VUTTR'. 
 
-There is also a *'.env.example'* file at the root folder. In order to run the app, rename it to '.env'. Also **make sure to pass the information you got from Postbird**.
+There is also a *'.env.example'* file at the root folder. In order to run the app, rename it to '.env'. 
+Also **make sure to pass the information you got from Postbird**. (host, port, username, password)
 
 After all that, run the following command:
+```
+npx sequelize db:migrate
+```
+or
 ```
 yarn sequelize db:migrate
 ```
@@ -54,6 +60,8 @@ yarn start
 ```
 
 ### Endpoints
+
+To test the API, you can use a REST Client. Such as *Insomnia* or *Postman*
 
 You can **add** new Tools using the endpoint
 ```
