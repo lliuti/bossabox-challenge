@@ -33,7 +33,7 @@ To create and manage data, you can install Postbird (a GUI client). You can get 
 - Port
 - Username (the default username is 'postgres')
 - Password 
-After connecting, create a database named 'VUTTR'. 
+**After connecting, create a database named 'VUTTR'.** 
 
 There is also a *'.env.example'* file at the root folder. In order to run the app, rename it to '.env'. 
 Also **make sure to pass the information you got from Postbird**. (host, port, username, password)
